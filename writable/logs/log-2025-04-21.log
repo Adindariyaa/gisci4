@@ -1,0 +1,60 @@
+CRITICAL - 2025-04-21 04:49:20 --> Error: Call to undefined function form_open_multipart()
+[Method: GET, Route: Lokasi/inputLokasi]
+in APPPATH\Views\lokasi\v_input_lokasi.php on line 9.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('lokasi/v_input_lokasi', [], true)
+ 4 APPPATH\Views\v_template.php(118): view('lokasi/v_input_lokasi')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\v_template.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('v_template', [], true)
+ 8 APPPATH\Controllers\Lokasi.php(22): view('v_template', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Lokasi->inputLokasi()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-21 04:49:28 --> Error: Call to undefined function form_open_multipart()
+[Method: GET, Route: Lokasi/inputLokasi]
+in APPPATH\Views\lokasi\v_input_lokasi.php on line 9.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('lokasi/v_input_lokasi', [], true)
+ 4 APPPATH\Views\v_template.php(118): view('lokasi/v_input_lokasi')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\v_template.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('v_template', [], true)
+ 8 APPPATH\Controllers\Lokasi.php(22): view('v_template', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Lokasi->inputLokasi()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-04-21 04:49:31 --> Error: Call to undefined function form_open_multipart()
+[Method: GET, Route: Lokasi/inputLokasi]
+in APPPATH\Views\lokasi\v_input_lokasi.php on line 9.
+ 1 SYSTEMPATH\View\View.php(224): include()
+ 2 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('lokasi/v_input_lokasi', [], true)
+ 4 APPPATH\Views\v_template.php(118): view('lokasi/v_input_lokasi')
+ 5 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\v_template.php')
+ 6 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('v_template', [], true)
+ 8 APPPATH\Controllers\Lokasi.php(22): view('v_template', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Lokasi->inputLokasi()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-04-21 06:02:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-21 06:04:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-21 06:06:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-21 06:06:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-21 06:06:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-21 06:06:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-21 08:34:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-21 08:39:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-21 09:52:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
