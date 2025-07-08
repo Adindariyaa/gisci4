@@ -19,7 +19,7 @@
         <?php echo form_open_multipart('Lokasi/insertData') ?>
 
         <div class="form-group">
-            <label>Nama Lokasi </label>
+            <label>Nama GOR </label>
             <input class="form-control" name="nama_lokasi">
             <p class="text-danger">
                 <?= isset($errors['nama_lokasi']) ? validation_show_error('nama_lokasi') : '' ?>
@@ -32,6 +32,14 @@
             <input class="form-control" name="alamat_lokasi">
             <p class="text-danger">
                 <?= isset($errors['alamat_lokasi']) ? validation_show_error('alamat_lokasi') : '' ?>
+            </p>
+        </div>
+
+        <div class="form-group">
+            <label>Kecamatan </label>
+            <input class="form-control" name="kecamatan">
+            <p class="text-danger">
+                <?= isset($errors['kecamatan']) ? validation_show_error('kecamatan') : '' ?>
             </p>
         </div>
 
@@ -54,7 +62,7 @@
 
         <div class="form-group">
             <label>Foto Lokasi </label>
-            <input type="file" name="foto_lokasi" class="form-control">
+            <input type="file" name="foto_lokasi[]" class="form-control" multiple>
             <p class="text-danger">
                 <?= isset($errors['foto_lokasi']) ? validation_show_error('foto_lokasi') : '' ?>
             </p>
@@ -100,10 +108,18 @@
         </div>
 
         <div class="form-group">
-            <label>Harga Sewa </label>
+            <label>Harga Sewa Weekday </label>
             <input class="form-control" name="harga_sewa" type="text" placeholder="Rp" autocomplete="off">
             <p class="text-danger">
                 <?= isset($errors['harga_sewa']) ? validation_show_error('harga_sewa') : '' ?>
+            </p>
+        </div>
+
+        <div class="form-group">
+            <label>Harga Sewa Weekend </label>
+            <input class="form-control" name="harga_sewa_wk" type="text" placeholder="Rp" autocomplete="off">
+            <p class="text-danger">
+                <?= isset($errors['harga_sewa_wk']) ? validation_show_error('harga_sewa_wk') : '' ?>
             </p>
         </div>
 
@@ -115,12 +131,14 @@
             </p>
         </div>
 
-        <label> Metode Pemesanan </label><br>
-        <select class="form-select" aria-label="Default select example">
-            <option selected></option>
-            <option value="1">Online</option>
-            <option value="2">Offline</option>
+        <label>Metode Pemesanan </label>
+        <select name="metode_pemesanan" class="form-select">
+            <label>Kontak Pemesanan </label>
+            <option value="" selected>Pilih Metode</option>
+            <option value="online">Online</option>
+            <option value="offline">Offline</option>
         </select>
+
 
         <br>
         <button type="submit" class="btn btn-primary">Simpan </button>

@@ -1,0 +1,497 @@
+DEBUG - 2025-06-21 04:42:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 04:50:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-21 04:50:56 --> CodeIgniter\Validation\Exceptions\ValidationException: "Kantin" is not a valid rule.
+[Method: POST, Route: Lokasi/insertData]
+in SYSTEMPATH\Validation\Validation.php on line 346.
+ 1 SYSTEMPATH\Validation\Validation.php(346): CodeIgniter\Validation\Exceptions\ValidationException::forRuleNotFound('Kantin')
+ 2 SYSTEMPATH\Validation\Validation.php(202): CodeIgniter\Validation\Validation->processRules('kantin', 'kantin', '1', [...], [...], 'kantin')
+ 3 SYSTEMPATH\Controller.php(138): CodeIgniter\Validation\Validation->run()
+ 4 APPPATH\Controllers\Lokasi.php(38): CodeIgniter\Controller->validate([...])
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Lokasi->insertData()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-06-21 04:55:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 04:55:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 04:55:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 04:56:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 04:56:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 06:13:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-06-21 06:14:30 --> mysqli_sql_exception: Unknown column 'metode_pemesanan' in 'field list' in C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `tb...', 0)
+#1 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\xampp\htdocs\belajar-gis-dasar-ci4\app\Models\ModelLokasi.php(13): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\belajar-gis-dasar-ci4\app\Controllers\Lokasi.php(148): App\Models\ModelLokasi->insertData(Array)
+#6 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\CodeIgniter.php(933): App\Controllers\Lokasi->insertData()
+#7 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+#8 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\belajar-gis-dasar-ci4\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2025-06-21 06:14:30 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'metode_pemesanan' in 'field list'
+[Method: POST, Route: Lokasi/insertData]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tbl_lokasi` (`nama_lokasi`, `alamat_lokasi`, `latitude`, `longitude`, `foto_lokasi`, `jumlah_lapangan`, `jam_mulai`, `jam_selesai`, `harga_sewa`, `kontak_pemesanan`, `kantin`, `toilet`, `parkir`, `metode_pemesanan`) VALUES (:nama_lokasi:, :alamat_lokasi:, :latitude:, :longitude:, :foto_lokasi:, :jumlah_lapangan:, :jam_mulai:, :jam_selesai:, :harga_sewa:, :kontak_pemesanan:, :kantin:, :toilet:, :parkir:, :metode_pemesanan:)', [...], false)
+ 2 APPPATH\Models\ModelLokasi.php(13): CodeIgniter\Database\BaseBuilder->insert([...])
+ 3 APPPATH\Controllers\Lokasi.php(148): App\Models\ModelLokasi->insertData([...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Lokasi->insertData()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-21 06:14:30 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'metode_pemesanan' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tbl_lokasi` (`nama_lokasi`, `alamat_lokasi`, `latitude`, `longitude`, `foto_lokasi`, `jumlah_lapangan`, `jam_mulai`, `jam_selesai`, `harga_sewa`, `kontak_pemesanan`, `kantin`, `toilet`, `parkir`, `metode_pemesanan`) VALUES (\'adinda \', \'jalan\', \'5.599284664796704\', \'95.41423725669856\', \'1750486470_ec35b5cd20c1188146f5.jpg\', \'4\', \'13:18\', \'18:14\', \'40000\', \'0867263273\', 1, 1, 0, \'1\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tbl_lokasi` (`nama_lokasi`, `alamat_lokasi`, `latitude`, `longitude`, `foto_lokasi`, `jumlah_lapangan`, `jam_mulai`, `jam_selesai`, `harga_sewa`, `kontak_pemesanan`, `kantin`, `toilet`, `parkir`, `metode_pemesanan`) VALUES (\'adinda \', \'jalan\', \'5.599284664796704\', \'95.41423725669856\', \'1750486470_ec35b5cd20c1188146f5.jpg\', \'4\', \'13:18\', \'18:14\', \'40000\', \'0867263273\', 1, 1, 0, \'1\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tbl_lokasi` (`nama_lokasi`, `alamat_lokasi`, `latitude`, `longitude`, `foto_lokasi`, `jumlah_lapangan`, `jam_mulai`, `jam_selesai`, `harga_sewa`, `kontak_pemesanan`, `kantin`, `toilet`, `parkir`, `metode_pemesanan`) VALUES (:nama_lokasi:, :alamat_lokasi:, :latitude:, :longitude:, :foto_lokasi:, :jumlah_lapangan:, :jam_mulai:, :jam_selesai:, :harga_sewa:, :kontak_pemesanan:, :kantin:, :toilet:, :parkir:, :metode_pemesanan:)', [...], false)
+ 4 APPPATH\Models\ModelLokasi.php(13): CodeIgniter\Database\BaseBuilder->insert([...])
+ 5 APPPATH\Controllers\Lokasi.php(148): App\Models\ModelLokasi->insertData([...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Lokasi->insertData()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-21 06:14:30 --> [Caused by] mysqli_sql_exception: Unknown column 'metode_pemesanan' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `tbl_lokasi` (`nama_lokasi`, `alamat_lokasi`, `latitude`, `longitude`, `foto_lokasi`, `jumlah_lapangan`, `jam_mulai`, `jam_selesai`, `harga_sewa`, `kontak_pemesanan`, `kantin`, `toilet`, `parkir`, `metode_pemesanan`) VALUES (\'adinda \', \'jalan\', \'5.599284664796704\', \'95.41423725669856\', \'1750486470_ec35b5cd20c1188146f5.jpg\', \'4\', \'13:18\', \'18:14\', \'40000\', \'0867263273\', 1, 1, 0, \'1\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tbl_lokasi` (`nama_lokasi`, `alamat_lokasi`, `latitude`, `longitude`, `foto_lokasi`, `jumlah_lapangan`, `jam_mulai`, `jam_selesai`, `harga_sewa`, `kontak_pemesanan`, `kantin`, `toilet`, `parkir`, `metode_pemesanan`) VALUES (\'adinda \', \'jalan\', \'5.599284664796704\', \'95.41423725669856\', \'1750486470_ec35b5cd20c1188146f5.jpg\', \'4\', \'13:18\', \'18:14\', \'40000\', \'0867263273\', 1, 1, 0, \'1\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tbl_lokasi` (`nama_lokasi`, `alamat_lokasi`, `latitude`, `longitude`, `foto_lokasi`, `jumlah_lapangan`, `jam_mulai`, `jam_selesai`, `harga_sewa`, `kontak_pemesanan`, `kantin`, `toilet`, `parkir`, `metode_pemesanan`) VALUES (\'adinda \', \'jalan\', \'5.599284664796704\', \'95.41423725669856\', \'1750486470_ec35b5cd20c1188146f5.jpg\', \'4\', \'13:18\', \'18:14\', \'40000\', \'0867263273\', 1, 1, 0, \'1\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tbl_lokasi` (`nama_lokasi`, `alamat_lokasi`, `latitude`, `longitude`, `foto_lokasi`, `jumlah_lapangan`, `jam_mulai`, `jam_selesai`, `harga_sewa`, `kontak_pemesanan`, `kantin`, `toilet`, `parkir`, `metode_pemesanan`) VALUES (:nama_lokasi:, :alamat_lokasi:, :latitude:, :longitude:, :foto_lokasi:, :jumlah_lapangan:, :jam_mulai:, :jam_selesai:, :harga_sewa:, :kontak_pemesanan:, :kantin:, :toilet:, :parkir:, :metode_pemesanan:)', [...], false)
+ 5 APPPATH\Models\ModelLokasi.php(13): CodeIgniter\Database\BaseBuilder->insert([...])
+ 6 APPPATH\Controllers\Lokasi.php(148): App\Models\ModelLokasi->insertData([...])
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Lokasi->insertData()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-06-21 06:14:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 06:15:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 06:15:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 06:18:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 06:18:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-06-21 06:19:49 --> mysqli_sql_exception: Unknown column 'metode_pemesanan' in 'field list' in C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `tb...', 0)
+#1 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', Array, false)
+#4 C:\xampp\htdocs\belajar-gis-dasar-ci4\app\Models\ModelLokasi.php(13): CodeIgniter\Database\BaseBuilder->insert(Array)
+#5 C:\xampp\htdocs\belajar-gis-dasar-ci4\app\Controllers\Lokasi.php(148): App\Models\ModelLokasi->insertData(Array)
+#6 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\CodeIgniter.php(933): App\Controllers\Lokasi->insertData()
+#7 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+#8 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\belajar-gis-dasar-ci4\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2025-06-21 06:19:49 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'metode_pemesanan' in 'field list'
+[Method: POST, Route: Lokasi/insertData]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tbl_lokasi` (`nama_lokasi`, `alamat_lokasi`, `latitude`, `longitude`, `foto_lokasi`, `jumlah_lapangan`, `jam_mulai`, `jam_selesai`, `harga_sewa`, `kontak_pemesanan`, `kantin`, `toilet`, `parkir`, `metode_pemesanan`) VALUES (:nama_lokasi:, :alamat_lokasi:, :latitude:, :longitude:, :foto_lokasi:, :jumlah_lapangan:, :jam_mulai:, :jam_selesai:, :harga_sewa:, :kontak_pemesanan:, :kantin:, :toilet:, :parkir:, :metode_pemesanan:)', [...], false)
+ 2 APPPATH\Models\ModelLokasi.php(13): CodeIgniter\Database\BaseBuilder->insert([...])
+ 3 APPPATH\Controllers\Lokasi.php(148): App\Models\ModelLokasi->insertData([...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Lokasi->insertData()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-21 06:19:49 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'metode_pemesanan' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tbl_lokasi` (`nama_lokasi`, `alamat_lokasi`, `latitude`, `longitude`, `foto_lokasi`, `jumlah_lapangan`, `jam_mulai`, `jam_selesai`, `harga_sewa`, `kontak_pemesanan`, `kantin`, `toilet`, `parkir`, `metode_pemesanan`) VALUES (\'m32m2\', \'wbewenw\', \'5.522474679562795\', \'95.29271242871133\', \'1750486789_91951783e49512e3a615.jpg\', \'5\', \'15:19\', \'17:19\', \'80000\', \'0822878787\', 1, 1, 1, \'1\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tbl_lokasi` (`nama_lokasi`, `alamat_lokasi`, `latitude`, `longitude`, `foto_lokasi`, `jumlah_lapangan`, `jam_mulai`, `jam_selesai`, `harga_sewa`, `kontak_pemesanan`, `kantin`, `toilet`, `parkir`, `metode_pemesanan`) VALUES (\'m32m2\', \'wbewenw\', \'5.522474679562795\', \'95.29271242871133\', \'1750486789_91951783e49512e3a615.jpg\', \'5\', \'15:19\', \'17:19\', \'80000\', \'0822878787\', 1, 1, 1, \'1\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tbl_lokasi` (`nama_lokasi`, `alamat_lokasi`, `latitude`, `longitude`, `foto_lokasi`, `jumlah_lapangan`, `jam_mulai`, `jam_selesai`, `harga_sewa`, `kontak_pemesanan`, `kantin`, `toilet`, `parkir`, `metode_pemesanan`) VALUES (:nama_lokasi:, :alamat_lokasi:, :latitude:, :longitude:, :foto_lokasi:, :jumlah_lapangan:, :jam_mulai:, :jam_selesai:, :harga_sewa:, :kontak_pemesanan:, :kantin:, :toilet:, :parkir:, :metode_pemesanan:)', [...], false)
+ 4 APPPATH\Models\ModelLokasi.php(13): CodeIgniter\Database\BaseBuilder->insert([...])
+ 5 APPPATH\Controllers\Lokasi.php(148): App\Models\ModelLokasi->insertData([...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Lokasi->insertData()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-21 06:19:49 --> [Caused by] mysqli_sql_exception: Unknown column 'metode_pemesanan' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `tbl_lokasi` (`nama_lokasi`, `alamat_lokasi`, `latitude`, `longitude`, `foto_lokasi`, `jumlah_lapangan`, `jam_mulai`, `jam_selesai`, `harga_sewa`, `kontak_pemesanan`, `kantin`, `toilet`, `parkir`, `metode_pemesanan`) VALUES (\'m32m2\', \'wbewenw\', \'5.522474679562795\', \'95.29271242871133\', \'1750486789_91951783e49512e3a615.jpg\', \'5\', \'15:19\', \'17:19\', \'80000\', \'0822878787\', 1, 1, 1, \'1\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tbl_lokasi` (`nama_lokasi`, `alamat_lokasi`, `latitude`, `longitude`, `foto_lokasi`, `jumlah_lapangan`, `jam_mulai`, `jam_selesai`, `harga_sewa`, `kontak_pemesanan`, `kantin`, `toilet`, `parkir`, `metode_pemesanan`) VALUES (\'m32m2\', \'wbewenw\', \'5.522474679562795\', \'95.29271242871133\', \'1750486789_91951783e49512e3a615.jpg\', \'5\', \'15:19\', \'17:19\', \'80000\', \'0822878787\', 1, 1, 1, \'1\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tbl_lokasi` (`nama_lokasi`, `alamat_lokasi`, `latitude`, `longitude`, `foto_lokasi`, `jumlah_lapangan`, `jam_mulai`, `jam_selesai`, `harga_sewa`, `kontak_pemesanan`, `kantin`, `toilet`, `parkir`, `metode_pemesanan`) VALUES (\'m32m2\', \'wbewenw\', \'5.522474679562795\', \'95.29271242871133\', \'1750486789_91951783e49512e3a615.jpg\', \'5\', \'15:19\', \'17:19\', \'80000\', \'0822878787\', 1, 1, 1, \'1\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tbl_lokasi` (`nama_lokasi`, `alamat_lokasi`, `latitude`, `longitude`, `foto_lokasi`, `jumlah_lapangan`, `jam_mulai`, `jam_selesai`, `harga_sewa`, `kontak_pemesanan`, `kantin`, `toilet`, `parkir`, `metode_pemesanan`) VALUES (:nama_lokasi:, :alamat_lokasi:, :latitude:, :longitude:, :foto_lokasi:, :jumlah_lapangan:, :jam_mulai:, :jam_selesai:, :harga_sewa:, :kontak_pemesanan:, :kantin:, :toilet:, :parkir:, :metode_pemesanan:)', [...], false)
+ 5 APPPATH\Models\ModelLokasi.php(13): CodeIgniter\Database\BaseBuilder->insert([...])
+ 6 APPPATH\Controllers\Lokasi.php(148): App\Models\ModelLokasi->insertData([...])
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Lokasi->insertData()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-06-21 06:23:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 06:23:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 06:28:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 06:28:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 06:30:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 06:30:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 06:31:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 06:31:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 06:40:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 06:40:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 06:42:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 06:42:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 06:45:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 06:45:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-21 07:02:16 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\ModelLokasi::insertData
+[Method: POST, Route: Lokasi/insertData]
+in SYSTEMPATH\Model.php on line 930.
+ 1 APPPATH\Controllers\Lokasi.php(149): CodeIgniter\Model->__call('insertData', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Lokasi->insertData()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-06-21 07:03:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 07:03:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-21 11:04:14 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\ModelLokasi::getAllData
+[Method: GET, Route: Lokasi/pemetaanLokasi]
+in SYSTEMPATH\Model.php on line 930.
+ 1 APPPATH\Controllers\Lokasi.php(163): CodeIgniter\Model->__call('getAllData', [])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Lokasi->pemetaanLokasi()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-21 11:04:19 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\ModelLokasi::getAllData
+[Method: GET, Route: Lokasi/pemetaanLokasi]
+in SYSTEMPATH\Model.php on line 930.
+ 1 APPPATH\Controllers\Lokasi.php(163): CodeIgniter\Model->__call('getAllData', [])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Lokasi->pemetaanLokasi()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-06-21 11:04:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-21 11:04:25 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\ModelLokasi::getAllData
+[Method: GET, Route: Lokasi/pemetaanLokasi]
+in SYSTEMPATH\Model.php on line 930.
+ 1 APPPATH\Controllers\Lokasi.php(163): CodeIgniter\Model->__call('getAllData', [])
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Lokasi->pemetaanLokasi()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-06-21 11:09:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 11:09:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 11:14:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-06-21 11:20:12 --> mysqli_sql_exception: Unknown column 'tbl_lokasi.id' in 'where clause' in C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Database\MySQLi\Connection.php(327): mysqli->query('UPDATE `tbl_lok...', 0)
+#1 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `tbl_lok...')
+#2 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `tbl_lok...')
+#3 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `tbl_lok...', Array, false)
+#4 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Model.php(461): CodeIgniter\Database\BaseBuilder->update()
+#5 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\BaseModel.php(1027): CodeIgniter\Model->doUpdate(Array, Array)
+#6 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Model.php(863): CodeIgniter\BaseModel->update(Array, Array)
+#7 C:\xampp\htdocs\belajar-gis-dasar-ci4\app\Controllers\Lokasi.php(170): CodeIgniter\Model->update('1', Array)
+#8 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\CodeIgniter.php(933): App\Controllers\Lokasi->update('1')
+#9 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+#10 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\belajar-gis-dasar-ci4\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\belajar-gis-dasar-ci4\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-06-21 11:20:12 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tbl_lokasi.id' in 'where clause'
+[Method: POST, Route: lokasi/update/1]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `tbl_lokasi` SET `nama_lokasi` = :nama_lokasi:, `alamat_lokasi` = :alamat_lokasi:, `kantin` = :kantin:, `toilet` = :toilet:, `parkir` = :parkir:, `jumlah_lapangan` = :jumlah_lapangan:, `jam_mulai` = :jam_mulai:, `jam_selesai` = :jam_selesai:, `harga_sewa` = :harga_sewa:, `kontak_pemesanan` = :kontak_pemesanan:, `metode_pemesanan` = :metode_pemesanan:
+WHERE `tbl_lokasi`.`id` IN :tbl_lokasi.id:', [...], false)
+ 2 SYSTEMPATH\Model.php(461): CodeIgniter\Database\BaseBuilder->update()
+ 3 SYSTEMPATH\BaseModel.php(1027): CodeIgniter\Model->doUpdate([...], [...])
+ 4 SYSTEMPATH\Model.php(863): CodeIgniter\BaseModel->update([...], [...])
+ 5 APPPATH\Controllers\Lokasi.php(170): CodeIgniter\Model->update('1', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Lokasi->update('1')
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-21 11:20:12 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tbl_lokasi.id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `tbl_lokasi` SET `nama_lokasi` = \'Lokasi A\', `alamat_lokasi` = \'Jl. Anggrek \', `kantin` = \'1\', `toilet` = \'1\', `parkir` = \'1\', `jumlah_lapangan` = \'2\', `jam_mulai` = \'19:16\', `jam_selesai` = \'20:18\', `harga_sewa` = \'60000\', `kontak_pemesanan` = \'08537625325362\', `metode_pemesanan` = \'Online\'
+WHERE `tbl_lokasi`.`id` IN (\'1\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `tbl_lokasi` SET `nama_lokasi` = \'Lokasi A\', `alamat_lokasi` = \'Jl. Anggrek \', `kantin` = \'1\', `toilet` = \'1\', `parkir` = \'1\', `jumlah_lapangan` = \'2\', `jam_mulai` = \'19:16\', `jam_selesai` = \'20:18\', `harga_sewa` = \'60000\', `kontak_pemesanan` = \'08537625325362\', `metode_pemesanan` = \'Online\'
+WHERE `tbl_lokasi`.`id` IN (\'1\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `tbl_lokasi` SET `nama_lokasi` = :nama_lokasi:, `alamat_lokasi` = :alamat_lokasi:, `kantin` = :kantin:, `toilet` = :toilet:, `parkir` = :parkir:, `jumlah_lapangan` = :jumlah_lapangan:, `jam_mulai` = :jam_mulai:, `jam_selesai` = :jam_selesai:, `harga_sewa` = :harga_sewa:, `kontak_pemesanan` = :kontak_pemesanan:, `metode_pemesanan` = :metode_pemesanan:
+WHERE `tbl_lokasi`.`id` IN :tbl_lokasi.id:', [...], false)
+ 4 SYSTEMPATH\Model.php(461): CodeIgniter\Database\BaseBuilder->update()
+ 5 SYSTEMPATH\BaseModel.php(1027): CodeIgniter\Model->doUpdate([...], [...])
+ 6 SYSTEMPATH\Model.php(863): CodeIgniter\BaseModel->update([...], [...])
+ 7 APPPATH\Controllers\Lokasi.php(170): CodeIgniter\Model->update('1', [...])
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Lokasi->update('1')
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-21 11:20:12 --> [Caused by] mysqli_sql_exception: Unknown column 'tbl_lokasi.id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('UPDATE `tbl_lokasi` SET `nama_lokasi` = \'Lokasi A\', `alamat_lokasi` = \'Jl. Anggrek \', `kantin` = \'1\', `toilet` = \'1\', `parkir` = \'1\', `jumlah_lapangan` = \'2\', `jam_mulai` = \'19:16\', `jam_selesai` = \'20:18\', `harga_sewa` = \'60000\', `kontak_pemesanan` = \'08537625325362\', `metode_pemesanan` = \'Online\'
+WHERE `tbl_lokasi`.`id` IN (\'1\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `tbl_lokasi` SET `nama_lokasi` = \'Lokasi A\', `alamat_lokasi` = \'Jl. Anggrek \', `kantin` = \'1\', `toilet` = \'1\', `parkir` = \'1\', `jumlah_lapangan` = \'2\', `jam_mulai` = \'19:16\', `jam_selesai` = \'20:18\', `harga_sewa` = \'60000\', `kontak_pemesanan` = \'08537625325362\', `metode_pemesanan` = \'Online\'
+WHERE `tbl_lokasi`.`id` IN (\'1\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `tbl_lokasi` SET `nama_lokasi` = \'Lokasi A\', `alamat_lokasi` = \'Jl. Anggrek \', `kantin` = \'1\', `toilet` = \'1\', `parkir` = \'1\', `jumlah_lapangan` = \'2\', `jam_mulai` = \'19:16\', `jam_selesai` = \'20:18\', `harga_sewa` = \'60000\', `kontak_pemesanan` = \'08537625325362\', `metode_pemesanan` = \'Online\'
+WHERE `tbl_lokasi`.`id` IN (\'1\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2521): CodeIgniter\Database\BaseConnection->query('UPDATE `tbl_lokasi` SET `nama_lokasi` = :nama_lokasi:, `alamat_lokasi` = :alamat_lokasi:, `kantin` = :kantin:, `toilet` = :toilet:, `parkir` = :parkir:, `jumlah_lapangan` = :jumlah_lapangan:, `jam_mulai` = :jam_mulai:, `jam_selesai` = :jam_selesai:, `harga_sewa` = :harga_sewa:, `kontak_pemesanan` = :kontak_pemesanan:, `metode_pemesanan` = :metode_pemesanan:
+WHERE `tbl_lokasi`.`id` IN :tbl_lokasi.id:', [...], false)
+ 5 SYSTEMPATH\Model.php(461): CodeIgniter\Database\BaseBuilder->update()
+ 6 SYSTEMPATH\BaseModel.php(1027): CodeIgniter\Model->doUpdate([...], [...])
+ 7 SYSTEMPATH\Model.php(863): CodeIgniter\BaseModel->update([...], [...])
+ 8 APPPATH\Controllers\Lokasi.php(170): CodeIgniter\Model->update('1', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Lokasi->update('1')
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Lokasi))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-06-21 11:21:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 11:21:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 11:22:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 11:24:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 11:24:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 11:25:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 11:25:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 11:33:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 11:36:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 11:36:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 11:36:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 11:36:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 11:36:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 11:36:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 11:37:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 11:37:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 11:37:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 11:43:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:08:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:10:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:10:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:10:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:11:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:12:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:12:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:12:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:12:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:12:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:14:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:14:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:14:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:16:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:18:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:18:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:19:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:19:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:20:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:20:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:21:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:21:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:23:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:23:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-06-21 14:23:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-06-21 14:34:21 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "v_template_user.php"
+[Method: GET, Route: Home_user/dashboard]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('v_template_user.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('v_template_user', [], true)
+ 3 APPPATH\Controllers\Home_user.php(41): view('v_template_user', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home_user->dashboard()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home_user))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-21 14:36:18 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "v_template_user.php"
+[Method: GET, Route: Home_user/dashboard]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('v_template_user.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('v_template_user', [], true)
+ 3 APPPATH\Controllers\Home_user.php(41): view('v_template_user', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home_user->dashboard()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home_user))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-21 14:36:20 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "v_template_user.php"
+[Method: GET, Route: Home_user/dashboard]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('v_template_user.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('v_template_user', [], true)
+ 3 APPPATH\Controllers\Home_user.php(41): view('v_template_user', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home_user->dashboard()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home_user))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-21 14:36:22 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "v_template_user.php"
+[Method: GET, Route: Home_user/dashboard]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('v_template_user.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('v_template_user', [], true)
+ 3 APPPATH\Controllers\Home_user.php(41): view('v_template_user', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home_user->dashboard()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home_user))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-21 14:36:23 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "v_template_user.php"
+[Method: GET, Route: Home_user/dashboard]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('v_template_user.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('v_template_user', [], true)
+ 3 APPPATH\Controllers\Home_user.php(41): view('v_template_user', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home_user->dashboard()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home_user))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-21 14:41:15 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "v_template_user.php"
+[Method: GET, Route: Home_user/dashboard]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('v_template_user.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('v_template_user', [], true)
+ 3 APPPATH\Controllers\Home_user.php(41): view('v_template_user', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home_user->dashboard()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home_user))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-21 14:41:16 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "v_template_user.php"
+[Method: GET, Route: Home_user/dashboard]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('v_template_user.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('v_template_user', [], true)
+ 3 APPPATH\Controllers\Home_user.php(41): view('v_template_user', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home_user->dashboard()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home_user))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-21 15:07:41 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "v_home_page.php"
+[Method: GET, Route: Home_user/dashboard]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('v_home_page.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('v_home_page', [], true)
+ 3 APPPATH\Views\user\v_template_user.php(81): view('v_home_page')
+ 4 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\user\\v_template_user.php')
+ 5 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user/v_template_user', [], true)
+ 7 APPPATH\Controllers\Home_user.php(42): view('user/v_template_user', [...])
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home_user->dashboard()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home_user))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-21 15:40:33 --> ErrorException: Undefined variable $lokasi
+[Method: GET, Route: Home_user/daftar_lapangan]
+in APPPATH\Views\user\v_daftar_lapangan.php on line 26.
+ 1 APPPATH\Views\user\v_daftar_lapangan.php(26): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $lokasi', 'C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\user\\v_daftar_lapangan.php', 26)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\user\\v_daftar_lapangan.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user/v_daftar_lapangan', [], true)
+ 5 APPPATH\Views\user\v_template_user.php(87): view('user/v_daftar_lapangan')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\user\\v_template_user.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user/v_template_user', [], true)
+ 9 APPPATH\Controllers\Home_user.php(50): view('user/v_template_user', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home_user->daftarLapangan()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home_user))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-21 15:44:44 --> ErrorException: Undefined variable $lokasi
+[Method: GET, Route: Home_user/daftar_lapangan]
+in APPPATH\Views\user\v_daftar_lapangan.php on line 28.
+ 1 APPPATH\Views\user\v_daftar_lapangan.php(28): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $lokasi', 'C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\user\\v_daftar_lapangan.php', 28)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\user\\v_daftar_lapangan.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user/v_daftar_lapangan', [], true)
+ 5 APPPATH\Views\user\v_template_user.php(87): view('user/v_daftar_lapangan')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\user\\v_template_user.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user/v_template_user', [], true)
+ 9 APPPATH\Controllers\Home_user.php(51): view('user/v_template_user', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home_user->daftarLapangan()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home_user))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-21 16:46:40 --> ErrorException: Undefined variable $id
+[Method: GET, Route: Home_user/daftar_lapangan]
+in APPPATH\Views\user\v_daftar_lapangan.php on line 54.
+ 1 APPPATH\Views\user\v_daftar_lapangan.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $id', 'C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\user\\v_daftar_lapangan.php', 54)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\user\\v_daftar_lapangan.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user/v_daftar_lapangan', [], true)
+ 5 APPPATH\Views\user\v_template_user.php(80): view('user/v_daftar_lapangan')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\user\\v_template_user.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user/v_template_user', [], true)
+ 9 APPPATH\Controllers\Home_user.php(60): view('user/v_template_user', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home_user->daftarLapangan()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home_user))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-21 16:47:48 --> ErrorException: Undefined variable $id
+[Method: GET, Route: Home_user/daftar_lapangan]
+in APPPATH\Views\user\v_daftar_lapangan.php on line 51.
+ 1 APPPATH\Views\user\v_daftar_lapangan.php(51): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $id', 'C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\user\\v_daftar_lapangan.php', 51)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\user\\v_daftar_lapangan.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user/v_daftar_lapangan', [], true)
+ 5 APPPATH\Views\user\v_template_user.php(80): view('user/v_daftar_lapangan')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\user\\v_template_user.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user/v_template_user', [], true)
+ 9 APPPATH\Controllers\Home_user.php(60): view('user/v_template_user', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home_user->daftarLapangan()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home_user))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-06-21 16:48:57 --> ErrorException: Undefined variable $id
+[Method: GET, Route: Home_user/daftar_lapangan]
+in APPPATH\Views\user\v_daftar_lapangan.php on line 52.
+ 1 APPPATH\Views\user\v_daftar_lapangan.php(52): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $id', 'C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\user\\v_daftar_lapangan.php', 52)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\user\\v_daftar_lapangan.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user/v_daftar_lapangan', [], true)
+ 5 APPPATH\Views\user\v_template_user.php(80): view('user/v_daftar_lapangan')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\user\\v_template_user.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user/v_template_user', [], true)
+ 9 APPPATH\Controllers\Home_user.php(60): view('user/v_template_user', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home_user->daftarLapangan()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home_user))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

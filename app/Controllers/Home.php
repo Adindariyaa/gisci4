@@ -2,15 +2,32 @@
 
 namespace App\Controllers;
 
+use App\Models\ModelLokasi;
+
 class Home extends BaseController
 {
+
+    protected $ModelLokasi;
+
+    public function __construct()
+    {
+        $this->ModelLokasi = new ModelLokasi();
+    }
+
     //fungsi untuk memanggil v_dashboard
     public function index()
     {
+        $lastInput = $this->ModelLokasi->getLastInputDate();
         $data = [
             'judul' => 'Dashboard',
-            'page' => 'v_dashboard',
+            'page' => 'admin/v_dashboard',
+            'totalLokasi' => $this->ModelLokasi->getTotal(),
+            'lastInputDate' => $lastInput ? $lastInput->created_at : 'Belum ada data',
+            'lokasi' => $this->ModelLokasi->getAllData(),
+           'kecamatanTercakup' => $this->ModelLokasi->getWilayahTercakup()
+
         ];
+
         return view('v_template', $data);
     }
 
@@ -25,7 +42,7 @@ class Home extends BaseController
         $password = $this->request->getPost('password');
 
         // Sementara, pakai contoh user manual
-        if ($username === 'admin@gmail.com' && $password === 'admin123') {
+        if ($username === 'admin@gmail.com' && $password === '123') {
             return redirect()->to('/home');
         } else {
             return redirect()->to('/v_login')->with('error', 'Username atau password salah');
@@ -41,5 +58,4 @@ class Home extends BaseController
         ];
         return view('v_template', $data);
     }
-
 }

@@ -1,0 +1,62 @@
+CRITICAL - 2025-07-04 05:50:36 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "daftar_lapangan.php"
+[Method: GET, Route: daftar_lapangan]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('daftar_lapangan.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('daftar_lapangan', [], true)
+ 3 APPPATH\Controllers\page.php(9): view('daftar_lapangan')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Page->daftarLapangan()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Page))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-04 05:54:18 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "daftar_lapangan.php"
+[Method: GET, Route: user/daftar_lapangan]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('daftar_lapangan.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('daftar_lapangan', [], true)
+ 3 APPPATH\Controllers\page.php(9): view('daftar_lapangan')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Page->daftarLapangan()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Page))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-04 05:56:46 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "daftar_lapangan.php"
+[Method: GET, Route: user/daftar_lapangan]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('daftar_lapangan.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('daftar_lapangan', [], true)
+ 3 APPPATH\Controllers\page.php(9): view('daftar_lapangan')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Page->daftarLapangan()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Page))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-04 06:02:31 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "daftar_lapangan.php"
+[Method: GET, Route: user/daftar_lapangan]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('daftar_lapangan.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('daftar_lapangan', [], true)
+ 3 APPPATH\Controllers\page.php(9): view('daftar_lapangan')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Page->daftarLapangan()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Page))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-07-04 06:05:55 --> ErrorException: Undefined variable $lokasi
+[Method: GET, Route: user/daftar_lapangan]
+in APPPATH\Views\user\home.php on line 142.
+ 1 APPPATH\Views\user\home.php(142): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $lokasi', 'C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\user\\home.php', 142)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\xampp\\htdocs\\belajar-gis-dasar-ci4\\app\\Views\\user\\home.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('user/home', [], true)
+ 5 APPPATH\Controllers\User.php(49): view('user/home', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\User->daftarLapangan()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
