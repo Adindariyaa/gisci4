@@ -126,7 +126,7 @@
 
         <div class="bg-white p-4 rounded-xl shadow mb-6">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title text-center text-primary text-uppercase">Our Location</h6>
+                <h6 class="section-title text-center text-primary text-uppercase">Lokasi Kami</h6>
                 <h1 class="mb-5">Peta Lokasi <span class="text-primary text-uppercase">GOR</span></h1>
             </div>
 
