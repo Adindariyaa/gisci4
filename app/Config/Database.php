@@ -23,11 +23,11 @@ class Database extends Config
 
         $this->default = [
             'DSN'          => env('database.default.DSN', ''),
-            'hostname'     => env('database.default.hostname', 'localhost'),
-            'username'     => env('database.default.username', 'root'),
-            'password'     => env('database.default.password', ''),
-            'database'     => env('database.default.database', 'ci4'),
-            'DBDriver'     => env('database.default.DBDriver', 'MySQLi'),
+            'hostname'     => 'mysql.railway.internal',
+            'username'     => 'railway',
+            'password'     => 'GxDGYxDfGwLRmfOGTkGWhgHtStGLWaFL',
+            'database'     => 'railway',
+            'DBDriver'     => 'MySQLi',
             'DBPrefix'     => env('database.default.DBPrefix', ''),
             'pConnect'     => (bool) env('database.default.pConnect', false),
             'DBDebug'      => (bool) env('database.default.DBDebug', ENVIRONMENT !== 'production'),
