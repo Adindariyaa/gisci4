@@ -104,7 +104,7 @@ class App extends BaseConfig
     {
         parent::__construct();
 
-        $this->baseURL                 = env('app.baseURL', 'http://localhost/');
+        $this->baseURL                 = env('app.baseURL', 'https://gisci4-production.up.railway.app/');
         $this->defaultLocale           = env('app.defaultLocale', 'en');
         $this->negotiateLocale         = (bool) env('app.negotiateLocale', false);
         $this->appTimezone             = env('app.timezone', 'UTC');
