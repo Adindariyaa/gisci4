@@ -101,11 +101,7 @@
                             <div class="sb-nav-link-icon-fill me-2"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
                         </a>
-
-                        <a class="nav-link" href="<?= base_url('Lokasi/pemetaanLokasi') ?>">
-                            <div class="sb-nav-link-icon-fill me-2"><i class="bi bi-geo-alt-fill"></i></div>
-                            Pemetaan Lokasi
-                        </a>
+                        
                         <a class="nav-link" href="<?= base_url('Lokasi/inputLokasi') ?>">
                             <div class="sb-nav-link-icon-fill me-2"> <i class="bi bi-pencil-square"></i></div>
                             Input Lokasi

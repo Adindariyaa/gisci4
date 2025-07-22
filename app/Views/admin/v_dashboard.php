@@ -23,7 +23,7 @@
 
                 <!-- Wilayah Tercover -->
                 <div class="bg-white shadow rounded-xl p-4">
-                    <p class="text-sm text-gray-500">Wilayah Tercover</p>
+                    <p class="text-sm text-gray-500">Kecamatan Tercover</p>
                     <h4 class="text-xl font-bold"><?= $kecamatanTercakup ?></h4>
                 </div>
 
@@ -39,7 +39,7 @@
         <!-- Peta Interaktif -->
         <div class="bg-white p-4 rounded-xl shadow mb-6">
             <h2 class="text-lg font-semibold mb-4">Peta Lokasi GOR</h2>
-            <div id="map" class="w-100 rounded-3" style="height: 50vh;"></div>
+            <div id="map" class="w-100 rounded-3" style="height: 90vh;"></div>
         </div>
 
         <!-- Script Leaflet -->

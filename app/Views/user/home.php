@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Hotelier - Hotel HTML Template</title>
+    <title>Badminton</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -35,6 +35,28 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
+    <style>
+        .leaflet-marker-icon.marker-animate {
+            animation: bounceIn 0.5s ease;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.5) translateY(-30px);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.1) translateY(10px);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1) translateY(0);
+            }
+        }
+    </style>
+
 </head>
 
 <body>
@@ -43,7 +65,7 @@
     } ?>
 
 
-    <div class="container-xxl bg-white p-0">
+    <div id="#home" class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -63,7 +85,7 @@
                 <div class="col-lg-9">
                     <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
                         <a href="index.html" class="navbar-brand d-block d-lg-none">
-                            <h1 class="m-0 text-primary text-uppercase">Hotelier</h1>
+                            <h1 class="m-0 text-primary text-uppercase">Badminton</h1>
                         </a>
                         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                             <span class="navbar-toggler-icon"></span>
@@ -146,8 +168,10 @@
                                 <option value="">-- Semua Kecamatan --</option>
                                 <?php
                                 $kecamatanList = [];
-                                foreach ($lokasi as $value) {
-                                    $kecamatanList[] = $value['kecamatan'];
+                                foreach ($semua_data as $value) {
+                                    if (!empty($value['kecamatan'])) {
+                                        $kecamatanList[] = $value['kecamatan'];
+                                    }
                                 }
                                 $kecamatanList = array_unique($kecamatanList);
                                 sort($kecamatanList);
@@ -168,6 +192,8 @@
                 </div>
             </div>
 
+
+
             <script>
                 const map = L.map('map').setView([5.5535711, 95.3147047], 13);
 
@@ -180,12 +206,17 @@
 
                 const allMarkers = [];
 
-                <?php foreach ($lokasi as $key => $value): ?>
+                <?php foreach ($semua_data as $key => $value): ?>
                     const marker<?= $key ?> = L.marker([<?= $value['latitude'] ?>, <?= $value['longitude'] ?>])
                         .bindPopup(`
-                         <img src="<?= base_url('foto/' . $value['foto_lokasi']) ?>" width="250"><br>
-                        <b><?= $value['nama_lokasi'] ?></b><br>
-                        Alamat: <?= $value['alamat_lokasi'] ?>
+                         <div style="text-align:center;">
+                <img src="<?= base_url('foto/' . $value['foto_lokasi']) ?>" width="220" class="mb-2 rounded shadow-sm"><br>
+                <strong><?= $value['nama_lokasi'] ?></strong><br>
+                <small><?= $value['alamat_lokasi'] ?></small><br>
+                <a href="<?= base_url('user/viewDetail/' . $value['id_lokasi']) ?>" class="btn btn-sm btn-success text-white mt-2">
+                    View Detail
+                </a>
+            </div>
                 `);
 
                     // Tambahkan properti kecamatan agar bisa difilter
@@ -197,18 +228,53 @@
 
                 function filterKecamatan() {
                     const selected = document.getElementById("filterKecamatan").value;
+                    const filteredMarkers = [];
 
-                    allMarkers.forEach(marker => {
+                    allMarkers.forEach((marker, index) => {
                         if (selected === "" || marker.kecamatan === selected) {
-                            marker.addTo(map);
+                            setTimeout(() => {
+                                marker.addTo(map);
+                                marker._icon.classList.add('marker-animate');
+                            }, index * 100);
+                            filteredMarkers.push(marker);
                         } else {
                             map.removeLayer(marker);
                         }
                     });
+
+                    // Zoom otomatis ke area marker
+                    if (filteredMarkers.length > 0) {
+                        // Jika "Semua Kecamatan" dipilih
+                        if (selected === "") {
+                            // Zoom ke pusat kota secara umum, zoom level tidak terlalu dekat
+                            map.flyTo([5.5535711, 95.3147047], 12, {
+                                duration: 1.5
+                            });
+                        } else {
+                            // Hitung titik tengah kecamatan
+                            let latSum = 0,
+                                lngSum = 0;
+
+                            filteredMarkers.forEach(marker => {
+                                const latlng = marker.getLatLng();
+                                latSum += latlng.lat;
+                                lngSum += latlng.lng;
+                            });
+
+                            const avgLat = latSum / filteredMarkers.length;
+                            const avgLng = lngSum / filteredMarkers.length;
+
+                            map.flyTo([avgLat, avgLng], 14, {
+                                duration: 1.5,
+                                easeLinearity: 0.25
+                            });
+                        }
+                    } else {
+                        // Jika tidak ada marker (kemungkinan error), reset ke default view
+                        map.setView([5.5535711, 95.3147047], 12);
+                    }
                 }
             </script>
-
-
 
             <!-- Room Start -->
             <style>
@@ -232,286 +298,297 @@
                     color: #fff;
                 }
             </style>
-            <div class="container-xxl py-5">
-                <div id="lapangan" class="container-xxl py-5">
-                    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                        <h1 class="section-title mb-5">Daftar GOR <span class="text-primary ">Badminton</span>
-                        </h1>
-                        <div class="row justify-content-center mb-4">
-                            <div class="col-md-8">
-                                <form action="<?= base_url('search') ?>" method="get" class="d-flex">
-                                    <input type="text" name="keyword" class="form-control me-2" placeholder="Cari lapangan...">
-                                    <button type="submit" class="btn btn-primary">Cari</button>
-                                </form>
-                            </div>
-                        </div>
+        </div>
+        <div class="container-xxl py-5">
+            <div id="lapangan" class="container-xxl py-5">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h1 class="section-title mb-5">Daftar GOR <span class="text-primary ">Badminton</span>
+                    </h1>
+                    <!-- Bagian Search Form -->
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-md-8">
+                            <form action="<?= base_url('user') ?>#lapangan" method="get" class="d-flex">
+                                <input type="text" name="keyword" class="form-control me-2"
+                                    placeholder="Cari lapangan..." value="<?= esc($keyword ?? '') ?>">
 
+                                <input type="hidden" name="kecamatan" value="<?= esc($filter_kecamatan ?? '') ?>">
+                                <input type="hidden" name="max_harga" value="<?= esc($max_harga ?? '') ?>">
+
+                                <button type="submit" class="btn btn-primary">Cari</button>
+                            </form>
+                        </div>
                     </div>
-                    <div class="row g-4">
+
+                </div>
+                <div class="row g-4">
+                    <?php if (!empty($daftar)): ?>
+                        <?php if (!empty($keyword)): ?>
+                            <div class="col-12">
+                                <h4 class="mb-4">Hasil Pencarian untuk: "<span class="text-success"><?= esc($keyword) ?></span>"</h4>
+                            </div>
+                        <?php endif; ?>
+
                         <?php foreach ($daftar as $item): ?>
                             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                                <div class="room-item shadow rounded overflow-hidden">
+                                <div class="room-item shadow rounded overflow-hidden h-100 d-flex flex-column">
                                     <div class="position-relative">
-                                        <img src="<?= base_url('foto/' . trim($item['foto_lokasi'])) ?>" class="img-fluid w-100 object-fit-cover rounded" style="height: 300px;" alt="<?= $item['nama_lokasi'] ?>">
+                                        <img src="<?= base_url('foto/' . trim($item['foto_lokasi'])) ?>" class="img-fluid w-100 object-fit-cover" style="height: 300px;" alt="<?= $item['nama_lokasi'] ?>">
                                         <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">Rp. <?= number_format($item['harga_sewa']) ?>/Jam</small>
                                     </div>
-                                    <div class="p-4 mt-2">
+                                    <div class="p-4 mt-2 d-flex flex-column flex-grow-1">
                                         <div class="d-flex justify-content-between mb-3">
                                             <h5 class="mb-0"><?= esc($item['nama_lokasi']) ?></h5>
                                         </div>
-                                        <div class="d-flex mb-2">
-                                            <?php if (!empty($item['jumlah_lapangan']) && $item['jumlah_lapangan'] > 0): ?>
+                                        <div class="d-flex mb-2 flex-wrap">
+                                            <?php if (!empty($item['jumlah_lapangan'])): ?>
                                                 <small class="border-end me-2 pe-2">
                                                     <i class="fa fa-car text-primary me-2"></i><?= $item['jumlah_lapangan'] ?> Lapangan
                                                 </small>
                                             <?php endif; ?>
-                                            <?php if (!empty($item['parkir']) && $item['parkir'] > 0): ?>
+                                            <?php if (!empty($item['parkir'])): ?>
                                                 <small class="border-end me-2 pe-2">
                                                     <i class="fa fa-car text-primary me-2"></i><?= $item['parkir'] ?> Parkir
                                                 </small>
                                             <?php endif; ?>
-
-                                            <?php if (!empty($item['kantin']) && $item['kantin'] > 0): ?>
+                                            <?php if (!empty($item['kantin'])): ?>
                                                 <small class="border-end me-2 pe-2">
                                                     <i class="fa fa-utensils text-primary me-2"></i><?= $item['kantin'] ?> Kantin
                                                 </small>
                                             <?php endif; ?>
-
-                                            <?php if (!empty($item['toilet']) && $item['toilet'] > 0): ?>
+                                            <?php if (!empty($item['toilet'])): ?>
                                                 <small>
                                                     <i class="fa fa-toilet text-primary me-2"></i><?= $item['toilet'] ?> Toilet
                                                 </small>
                                             <?php endif; ?>
                                         </div>
-                                        <p class="card-text mb-2"><i class="fas fa-map-marker-alt me-2 text-secondary"></i><?= $item['alamat_lokasi'] ?></p>
-                                        <!-- <p class="text-body mb-3">Deskripsi singkat lokasi bisa diletakkan di sini.</p> -->
-                                        <p class="card-text mb-0"><i class="fas fa-phone me-2 text-secondary mb-2"></i><?= $item['kontak_pemesanan'] ?></p>
-                                        <div class="d-flex justify-content-between">
-                                            <a class="btn btn-sm btn-dark rounded py-2 px-4" href="<?= base_url('User/viewDetail/' . $item['id_lokasi']) ?>">View Detail</a>
+                                        <p class="card-text mb-2 mt-auto"><i class="fas fa-map-marker-alt me-2 text-secondary"></i><?= $item['alamat_lokasi'] ?></p>
+                                        <p class="card-text mb-3"><i class="fas fa-phone me-2 text-secondary mb-2"></i><?= $item['kontak_pemesanan'] ?></p>
+                                        <div class="mt-auto d-flex justify-content-between">
+                                            <a class="btn btn-sm btn-dark rounded py-2 px-4 w-100" href="<?= base_url('User/viewDetail/' . $item['id_lokasi']) ?>">View Detail</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
-                    </div>
-                    <!-- Pagination -->
-                    <div class="d-flex justify-content-center mt-4">
-                        <?= $pager->links() ?>
-                    </div>
+                    <?php else: ?>
+                        <div class="col-12 text-center">
+                            <div class="alert alert-warning shadow-sm p-4 rounded">
+                                <i class="bi bi-exclamation-circle me-2"></i> Tidak ada data lapangan yang ditemukan.
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
                 </div>
+                <?php if (!empty($pager)): ?>
+                    <div class="d-flex justify-content-center mt-4">
+                        <?= $pager->links('default', 'default_full', ['query' => $_GET]) ?>
+                    </div>
+                <?php endif; ?>
             </div>
-            <!-- Room End -->
+        </div>
+        <!-- Room End -->
 
-            <style>
-                .section {
-                    padding: 40px 0;
-                }
+        <style>
+            .section {
+                padding: 40px 0;
+            }
 
-                .section img {
-                    border-radius: 8px;
-                    width: 100%;
-                    max-height: 250px;
-                    object-fit: cover;
-                    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-                    transition: transform 0.3s ease;
-                }
+            .section img {
+                border-radius: 8px;
+                width: 100%;
+                max-height: 250px;
+                object-fit: cover;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+                transition: transform 0.3s ease;
+            }
 
-                .section img:hover {
-                    transform: scale(1.02);
-                }
+            .section img:hover {
+                transform: scale(1.02);
+            }
 
+            .text-box {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+                font-size: 0.95rem;
+            }
+
+            .text-box h3 {
+                font-size: 1.25rem;
+                color: #007f6b;
+                margin-bottom: 0.75rem;
+            }
+
+            .text-box p {
+                margin-bottom: 0;
+                line-height: 1.5;
+                font-size: 0.95rem;
+                text-align: justify;
+            }
+
+            @media (max-width: 768px) {
                 .text-box {
-                    background-color: #fff;
-                    padding: 20px;
-                    border-radius: 8px;
-                    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-                    font-size: 0.95rem;
+                    font-size: 0.9rem;
                 }
 
                 .text-box h3 {
-                    font-size: 1.25rem;
-                    color: #007f6b;
-                    margin-bottom: 0.75rem;
+                    font-size: 1.1rem;
                 }
+            }
+        </style>
 
-                .text-box p {
-                    margin-bottom: 0;
-                    line-height: 1.5;
-                    font-size: 0.95rem;
-                    text-align: justify;
-                }
+        <!-- Mulai Konten -->
 
-                @media (max-width: 768px) {
-                    .text-box {
-                        font-size: 0.9rem;
-                    }
+        <!-- Bagian Awal Mula Permainan -->
+        <div id="quest" class="container-xxl py-1">
+            <div class="container text-center">
+                <h1 class="mb-4">SEJARAH <span class="text-primary text-uppercase">Badminton</span></h1>
+                <p class="text-muted">Perjalanan bulu tangkis dari masa ke masa secara visual dan informatif.</p>
+            </div>
+        </div>
 
-                    .text-box h3 {
-                        font-size: 1.1rem;
-                    }
-                }
-            </style>
-
-            <!-- Mulai Konten -->
-
-            <!-- Bagian Awal Mula Permainan -->
-            <div id="quest" class="container-xxl py-1">
-                <div class="container text-center">
-                    <h1 class="mb-4">SEJARAH <span class="text-primary text-uppercase">Badminton</span></h1>
-                    <p class="text-muted">Perjalanan bulu tangkis dari masa ke masa secara visual dan informatif.</p>
+        <div class="container section">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="<?= base_url('gambar/sejarah_badminton_india.jpg') ?>" alt="Asal usul badminton">
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-box">
+                        <h3>2000 SM – Awal Mula Permainan</h3>
+                        <p>Sejarah bulu tangkis di dunia diperkirakan dimulai dari Mesir sekitar 2000 tahun yang lalu. Namun, beberapa sumber lain menyebut bahwa permainan serupa juga berkembang di Tiongkok dan India. Di Tiongkok, permainan bernama Jianzi dipercaya menjadi cikal bakal bulu tangkis. Jianzi menggunakan kok, tetapi cara memainkannya berbeda dengan bulu tangkis modern karena kok tidak dipukul menggunakan raket, melainkan dijaga agar tidak jatuh ke tanah dengan kaki. Meskipun asal-usulnya tersebar di berbagai wilayah, sejarah mencatat bahwa bentuk modern dari permainan ini berkembang di Inggris.</p>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="container section">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 mb-4 mb-lg-0">
-                        <img src="<?= base_url('gambar/sejarah_badminton_india.jpg') ?>" alt="Asal usul badminton">
+        <div class="container section">
+            <div class="row align-items-center flex-lg-row-reverse">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="<?= base_url('gambar/battledore.png') ?>" alt="Battledore">
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-box">
+                        <h3>1850-an – Battledore and Shuttlecock</h3>
+                        <p>Tepatnya pada tahun 1850-an, permainan anak-anak di Inggris bernama Battledores and Shuttlecocks mulai populer di inggris, di mana kok dipukul menggunakan tongkat tanpa jaring. Karena pengaruh kolonial, permainan ini menyebar ke India dan dimainkan lebih kompetitif oleh tentara Inggris dengan menambahkan jaring. Nama “badminton” kemudian lahir karena permainan ini dimainkan di Badminton House, Inggris, sekitar tahun 1860.</p>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="text-box">
-                            <h3>2000 SM – Awal Mula Permainan</h3>
-                            <p>Sejarah bulu tangkis di dunia diperkirakan dimulai dari Mesir sekitar 2000 tahun yang lalu. Namun, beberapa sumber lain menyebut bahwa permainan serupa juga berkembang di Tiongkok dan India. Di Tiongkok, permainan bernama Jianzi dipercaya menjadi cikal bakal bulu tangkis. Jianzi menggunakan kok, tetapi cara memainkannya berbeda dengan bulu tangkis modern karena kok tidak dipukul menggunakan raket, melainkan dijaga agar tidak jatuh ke tanah dengan kaki. Meskipun asal-usulnya tersebar di berbagai wilayah, sejarah mencatat bahwa bentuk modern dari permainan ini berkembang di Inggris.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container section">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="<?= base_url('gambar/pbsi.jpeg') ?>" alt="PBSI Indonesia">
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-box">
+                        <h3>1951 – PBSI Didirikan</h3>
+                        <p>Di Indonesia, bulu tangkis mulai dikenal sejak masa penjajahan Inggris. Permainan ini kemudian mulai dimainkan secara luas oleh masyarakat dan secara bertahap menjadi populer. Seiring meningkatnya minat, mulai digelar berbagai kompetisi lokal yang mendorong semangat olahraga ini. Awalnya, bulu tangkis berada di bawah naungan Persatuan Olah Raga Indonesia (PORI), namun karena kurang fokus, pada 5 Mei 1951 didirikanlah organisasi khusus yang menaungi cabang ini, yaitu Persatuan Bulutangkis Seluruh Indonesia (PBSI). </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container section">
+            <div class="row align-items-center flex-lg-row-reverse">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="<?= base_url('gambar/olimpiade1992.jpg') ?>" alt="Olimpiade 1992">
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-box">
+                        <h3>1992 – Emas Pertama di Olimpiade</h3>
+                        <p>Tahun 1992 menjadi tonggak penting bagi bulu tangkis karena untuk pertama kalinya olahraga ini resmi dipertandingkan dalam ajang Olimpiade, tepatnya di Barcelona. Indonesia mencetak sejarah dengan meraih dua medali emas dari nomor tunggal putra dan tunggal putri. Alan Budikusuma dan Susi Susanti menjadi perwakilan Indonesia yang berhasil mengibarkan Merah Putih di pentas olahraga dunia. Prestasi ini menjadi kebanggaan nasional dan memperkuat posisi bulu tangkis sebagai salah satu olahraga paling berprestasi di Indonesia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--ABOUT BADMINTON QUEST START-->
+        <div class="container-xxl py-5">
+        </div>
+        <!--ABOUT BADMINTON QUEST START-->
+    </div>
+    <!-- Footer Start -->
+    <div id="kontak" class="container-fluid bg-dark text-light footer py-4">
+        <!-- Konten tetap tengah -->
+        <div class="container py-1">
+            <div class="row g-2">
+                <!-- Brand & Deskripsi -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="rounded p-2">
+                        <h1 class="text-white text-uppercase mb-3">Badminton Quest</h1>
+                        <p class="text-white">Website yang menyediakan informasi GOR badminton terbaik sesuai kebutuhanmu.</p>
+                    </div>
+                </div>
+
+                <!-- Kontak -->
+                <div class="col-md-6 col-lg-3 ps-lg-3">
+                    <h6 class="section-title text-start text-primary text-uppercase mb-4">Kontak</h6>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Banda Aceh, Indonesia</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+62 822 7760 4916</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>badmintonQuest@gmail.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Navigasi -->
+                <div class="col-lg-5 col-md-12 ps-lg-4">
+                    <div class="row gy-5 g-4">
+                        <div class="col-md-6">
+                            <h6 class="section-title text-start text-primary text-uppercase mb-4">Navigasi</h6>
+                            <a class="btn btn-link" href="#lapangan">Daftar Lapangan</a>
+                            <a class="btn btn-link" href="#about">Tentang</a>
+                            <a class="btn btn-link" href="#kontak">Kontak</a>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="container section">
-                <div class="row align-items-center flex-lg-row-reverse">
-                    <div class="col-lg-6 mb-4 mb-lg-0">
-                        <img src="<?= base_url('gambar/battledore.png') ?>" alt="Battledore">
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="text-box">
-                            <h3>1850-an – Battledore and Shuttlecock</h3>
-                            <p>Tepatnya pada tahun 1850-an, permainan anak-anak di Inggris bernama Battledores and Shuttlecocks mulai populer di inggris, di mana kok dipukul menggunakan tongkat tanpa jaring. Karena pengaruh kolonial, permainan ini menyebar ke India dan dimainkan lebih kompetitif oleh tentara Inggris dengan menambahkan jaring. Nama “badminton” kemudian lahir karena permainan ini dimainkan di Badminton House, Inggris, sekitar tahun 1860.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container section">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 mb-4 mb-lg-0">
-                        <img src="<?= base_url('gambar/pbsi.jpeg') ?>" alt="PBSI Indonesia">
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="text-box">
-                            <h3>1951 – PBSI Didirikan</h3>
-                            <p>Di Indonesia, bulu tangkis mulai dikenal sejak masa penjajahan Inggris. Permainan ini kemudian mulai dimainkan secara luas oleh masyarakat dan secara bertahap menjadi populer. Seiring meningkatnya minat, mulai digelar berbagai kompetisi lokal yang mendorong semangat olahraga ini. Awalnya, bulu tangkis berada di bawah naungan Persatuan Olah Raga Indonesia (PORI), namun karena kurang fokus, pada 5 Mei 1951 didirikanlah organisasi khusus yang menaungi cabang ini, yaitu Persatuan Bulutangkis Seluruh Indonesia (PBSI). </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container section">
-                <div class="row align-items-center flex-lg-row-reverse">
-                    <div class="col-lg-6 mb-4 mb-lg-0">
-                        <img src="<?= base_url('gambar/olimpiade1992.jpg') ?>" alt="Olimpiade 1992">
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="text-box">
-                            <h3>1992 – Emas Pertama di Olimpiade</h3>
-                            <p>Tahun 1992 menjadi tonggak penting bagi bulu tangkis karena untuk pertama kalinya olahraga ini resmi dipertandingkan dalam ajang Olimpiade, tepatnya di Barcelona. Indonesia mencetak sejarah dengan meraih dua medali emas dari nomor tunggal putra dan tunggal putri. Alan Budikusuma dan Susi Susanti menjadi perwakilan Indonesia yang berhasil mengibarkan Merah Putih di pentas olahraga dunia. Prestasi ini menjadi kebanggaan nasional dan memperkuat posisi bulu tangkis sebagai salah satu olahraga paling berprestasi di Indonesia.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!--ABOUT BADMINTON QUEST START-->
-            <div class="container-xxl py-5">
-                <div class="container">
-                    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                        <h1 class="mb-5">Badminton<span class="text-primary text-uppercase">Quest</span></h1>
-                        <p class="max-w-3xl mx-auto text-center mb-6">Badminton Quest adalah sebuah website yang bertujuan untuk memberikan informasi tentang GOR (Gedung Olahraga) badminton terbaik yang dapat disesuaikan dengan berbagai kebutuhan pengunjung. Website ini menyajikan berbagai detail tentang lokasi-lokasi GOR, fasilitas yang tersedia, serta kriteria lainnya yang dapat membantu pengguna dalam memilih tempat untuk bermain badminton.</p>
-                        <section class="py-5 px-6 md:px-20 bg-white mb-4">
-
-                    </div>
-                </div>
-            </div>
-            <!--ABOUT BADMINTON QUEST START-->
-
-            <!-- Footer Start -->
-
-            <div id="kontak" class="container-fluid bg-dark text-light footer py-4">
-                <!-- Konten tetap tengah -->
-                <div class="container py-1">
-                    <div class="row g-2">
-                        <!-- Brand & Deskripsi -->
-                        <div class="col-md-6 col-lg-4">
-                            <div class="rounded p-2">
-                                <h1 class="text-white text-uppercase mb-3">Badminton Quest</h1>
-                                <p class="text-white">Website yang menyediakan informasi GOR badminton terbaik sesuai kebutuhanmu.</p>
-                            </div>
-                        </div>
-
-                        <!-- Kontak -->
-                        <div class="col-md-6 col-lg-3 ps-lg-3">
-                            <h6 class="section-title text-start text-primary text-uppercase mb-4">Kontak</h6>
-                            <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Banda Aceh, Indonesia</p>
-                            <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+62 822 7760 4916</p>
-                            <p class="mb-2"><i class="fa fa-envelope me-3"></i>badmintonQuest@gmail.com</p>
-                            <div class="d-flex pt-2">
-                                <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-
-                        <!-- Navigasi -->
-                        <div class="col-lg-5 col-md-12 ps-lg-4">
-                            <div class="row gy-5 g-4">
-                                <div class="col-md-6">
-                                    <h6 class="section-title text-start text-primary text-uppercase mb-4">Navigasi</h6>
-                                    <a class="btn btn-link" href="#lapangan">Daftar Lapangan</a>
-                                    <a class="btn btn-link" href="#about">Tentang</a>
-                                    <a class="btn btn-link" href="#kontak">Kontak</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Copyrig-->
+        <!-- Copyrig-->
 
 
 
 
-                <!-- Back to Top -->
-                <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-            </div>
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
 
-            <!-- JavaScript Libraries -->
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="lib/wow/wow.min.js"></script>
-            <script src="lib/easing/easing.min.js"></script>
-            <script src="lib/waypoints/waypoints.min.js"></script>
-            <script src="lib/counterup/counterup.min.js"></script>
-            <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-            <script src="lib/tempusdominus/js/moment.min.js"></script>
-            <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-            <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-            <!-- Template Javascript -->
-            <script src="js/main.js"></script>
-            <!-- JavaScript Libraries -->
-            <script src="<?= base_url('hotelier/lib/jquery/jquery.min.js') ?>"></script>
-            <script src="<?= base_url('hotelier/lib/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
-            <script src="<?= base_url('hotelier/lib/wow/wow.min.js') ?>"></script>
-            <script src="<?= base_url('hotelier/lib/easing/easing.min.js') ?>"></script>
-            <script src="<?= base_url('hotelier/lib/waypoints/waypoints.min.js') ?>"></script>
-            <script src="<?= base_url('hotelier/lib/owlcarousel/owl.carousel.min.js') ?>"></script>
-            <script src="<?= base_url('hotelier/lib/tempusdominus/js/moment.min.js') ?>"></script>
-            <script src="<?= base_url('hotelier/lib/tempusdominus/js/moment-timezone.min.js') ?>"></script>
-            <script src="<?= base_url('hotelier/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') ?>"></script>
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <!-- JavaScript Libraries -->
+    <script src="<?= base_url('hotelier/lib/jquery/jquery.min.js') ?>"></script>
+    <script src="<?= base_url('hotelier/lib/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+    <script src="<?= base_url('hotelier/lib/wow/wow.min.js') ?>"></script>
+    <script src="<?= base_url('hotelier/lib/easing/easing.min.js') ?>"></script>
+    <script src="<?= base_url('hotelier/lib/waypoints/waypoints.min.js') ?>"></script>
+    <script src="<?= base_url('hotelier/lib/owlcarousel/owl.carousel.min.js') ?>"></script>
+    <script src="<?= base_url('hotelier/lib/tempusdominus/js/moment.min.js') ?>"></script>
+    <script src="<?= base_url('hotelier/lib/tempusdominus/js/moment-timezone.min.js') ?>"></script>
+    <script src="<?= base_url('hotelier/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') ?>"></script>
 
-            <script>
-                window.addEventListener('load', function() {
-                    document.getElementById('spinner').classList.remove('show');
-                });
-            </script>
+    <script>
+        window.addEventListener('load', function() {
+            document.getElementById('spinner').classList.remove('show');
+        });
+    </script>
 
 
 </body>

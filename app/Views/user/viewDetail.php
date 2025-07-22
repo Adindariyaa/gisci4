@@ -100,32 +100,49 @@
 
                         <p><small class="text-muted">Terdaftar pada: <?= date('d M Y, H:i', strtotime($lokasi['created_at'])) ?></small></p>
 
-                        <a href="<?= base_url('lokasi') ?>" class="btn btn-secondary mt-3">Kembali</a>
+                        <a href="<?= base_url('user') ?>#lapangan" class="btn btn-secondary mt-3">Kembali</a>
                     </div>
                 </div>
             </div>
 
             <!-- KANAN: PETA + Tombol -->
             <div class="col-lg-6">
-                <div class="card shadow-sm h-100">
-                    <div class="card-body p-0">
-                        <!-- Peta -->
-                        <div id="map" style="width: 100%; height: 500px;" class="rounded-top"></div>
+                <div class="shadow-sm rounded overflow-hidden bg-white">
+                    <!-- Peta -->
+                    <div id="map" style="width: 100%; height: 500px;" class="rounded-top"></div>
 
-                        <!-- Tombol Rute -->
-                        <div class="p-3 text-center">
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=<?= $lokasi['latitude'] ?>,<?= $lokasi['longitude'] ?>"
-                                class="btn btn-success w-100"
-                                target="_blank"
-                                rel="noopener noreferrer">
-                                Lihat Rute ke Lokasi
-                            </a>
-                        </div>
+                    <!-- Tombol Rute -->
+                    <div class="p-3 text-center">
+                        <a href="#"
+                            onclick="openRoute(<?= $lokasi['latitude'] ?>, <?= $lokasi['longitude'] ?>)"
+                            class="btn btn-success w-100">
+                            Lihat Rute ke Lokasi
+                        </a>
+
+
+                        <script>
+                            function openRoute(destLat, destLng) {
+                                if (navigator.geolocation) {
+                                    navigator.geolocation.getCurrentPosition(function(position) {
+                                        const origin = position.coords.latitude + ',' + position.coords.longitude;
+                                        const url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destLat},${destLng}`;
+                                        window.open(url, '_blank');
+                                    }, function(error) {
+                                        alert('Gagal mengambil lokasi kamu. Aktifkan izin lokasi browser.');
+                                    });
+                                } else {
+                                    alert('Browser kamu tidak mendukung fitur lokasi.');
+                                }
+                            }
+                        </script>
+
+
                     </div>
                 </div>
             </div>
-
         </div>
+
+    </div>
     </div>
 
     <!-- LEAFLET JS & CSS -->

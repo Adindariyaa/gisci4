@@ -31,7 +31,7 @@
                         <td> <?= $no++ ?> </td>
                         <td> <?= $value['nama_lokasi'] ?> </td>
                         <td> <?= $value['alamat_lokasi'] ?> </td>
-                        <td> <?= $value['latitude'] ?>, <?= $value['longitude'] ?> </td>
+                        <td><?= number_format($value['latitude'], 6, '.', '') ?>, <?= number_format($value['longitude'], 6, '.', '') ?></td>
                         <td>
                             <!-- Tombol untuk membuka modal -->
                             <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalFoto<?= $value['id_lokasi'] ?>" title="Lihat Foto">
@@ -75,12 +75,12 @@
                             <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalDetail<?= $value['id_lokasi'] ?>" title="Lihat Detail">
                                 <i class="bi bi-pencil-square"></i>
                             </button>
-                             <a href="<?= base_url('lokasi/delete/' . $value['id_lokasi']) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="bi bi-trash3"></i></a>
+                            <a href="<?= base_url('lokasi/delete/' . $value['id_lokasi']) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="bi bi-trash3"></i></a>
                             <!-- Modal Detail/Edit/Delete -->
                             <div class="modal fade" id="modalDetail<?= $value['id_lokasi'] ?>" tabindex="-1" aria-labelledby="labelDetail<?= $value['id_lokasi'] ?>" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <form action="<?= base_url('lokasi/update/' . $value['id_lokasi']) ?>" method="post">
+                                        <form action="<?= base_url('lokasi/update/' . $value['id_lokasi']) ?>" method="post" enctype="multipart/form-data">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="labelDetail<?= $value['id_lokasi'] ?>">Detail & Edit GOR</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
@@ -94,6 +94,49 @@
                                                     <label>Alamat</label>
                                                     <textarea name="alamat_lokasi" class="form-control" required><?= $value['alamat_lokasi'] ?></textarea>
                                                 </div>
+                                                <div class="mb-2">
+                                                    <label>Kecamatan</label>
+                                                    <select name="kecamatan" class="form-control" required>
+                                                        <option value="">-- Pilih Kecamatan --</option>
+                                                        <?php
+                                                        $listKecamatan = [
+                                                            'Baiturrahman',
+                                                            'Kuta Alam',
+                                                            'Ulee Kareng',
+                                                            'Banda Raya',
+                                                            'Meuraxa',
+                                                            'Syiah Kuala',
+                                                            'Jaya Baru',
+                                                            'Lueng Bata',
+                                                            'Kuta Raja',
+                                                            'Darussalam',
+                                                            'Baitussalam',
+                                                            'Ingin Jaya',
+                                                            'Kuta Baro',
+                                                            'Krueng Baronan Jaya',
+                                                            'Mesjid Raya',
+                                                            'Peukan Bada'
+                                                        ];
+                                                        foreach ($listKecamatan as $kec) :
+                                                        ?>
+                                                            <option value="<?= $kec ?>" <?= ($value['kecamatan'] ?? '') == $kec ? 'selected' : '' ?>>
+                                                                <?= $kec ?>
+                                                            </option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2">
+                                                    <label>Foto Sekarang</label><br>
+                                                    <img src="<?= base_url('foto/' . $value['foto_lokasi']) ?>" width="200" class="img-thumbnail mb-2">
+                                                </div>
+
+                                                <div class="mb-2">
+                                                    <label>Foto Baru (opsional)</label>
+                                                    <input type="file" name="foto_lokasi" class="form-control">
+                                                    <small class="text-muted">Kosongkan jika tidak ingin mengganti foto</small>
+                                                </div>
+
                                                 <div class="mb-2">
                                                     <label>Fasilitas</label><br>
                                                     <?php foreach (['kantin', 'toilet', 'parkir'] as $fasilitas) { ?>
@@ -119,9 +162,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="mb-2">
-                                                    <label>Harga Sewa (per jam)</label>
+                                                    <label>Harga Sewa Weekday </label>
                                                     <input type="text" name="harga_sewa" class="form-control" value="<?= $value['harga_sewa'] ?>" required>
                                                 </div>
+                                                <div class="mb-2">
+                                                    <label>Harga Sewa Weekend </label>
+                                                    <input type="text" name="harga_sewa_wk" class="form-control" value="<?= $value['harga_sewa_wk'] ?>">
+                                                </div>
+
                                                 <div class="mb-2">
                                                     <label>Kontak Pemesanan</label>
                                                     <input type="text" name="kontak_pemesanan" class="form-control" value="<?= $value['kontak_pemesanan'] ?>">

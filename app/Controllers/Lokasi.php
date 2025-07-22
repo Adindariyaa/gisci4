@@ -167,62 +167,155 @@ class Lokasi extends BaseController
     public function insertData()
     {
         $validation = \Config\Services::validation();
+
+        // Validasi hanya untuk input teks
         $rules = [
-            'nama_lokasi' => 'required',
-            'alamat_lokasi' => 'required',
-            'kecamatan' => 'required',
-            'latitude' => 'required',
-            'longitude' => 'required',
-            'jumlah_lapangan' => 'required',
-            'jam_mulai' => 'required',
-            'jam_selesai' => 'required',
-            'harga_sewa' => 'required',
-            'kontak_pemesanan' => 'required',
-            'metode_pemesanan' => 'required',
-            'harga_sewa_wk' => 'required'
+            'nama_lokasi'       => [
+                'label' => '',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Wajib diisi'
+                ]
+            ],
+            'alamat_lokasi'     => [
+                'label' => '',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Wajib diisi'
+                ]
+            ],
+            'kecamatan'         => [
+                'label' => '',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Wajib diisi'
+                ]
+            ],
+            'latitude'          => [
+                'label' => '',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Wajib diisi',
+                    'decimal' => '{field} Harus berupa angka desimal.'
+                ]
+            ],
+            'longitude'         => [
+                'label' => '',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Wajib diisi',
+                    'decimal' => '{field} Harus berupa angka desimal.'
+                ]
+            ],
+            'foto_lokasi' => [
+                'label' => 'Foto Lokasi',
+                'rules' => 'uploaded[foto_lokasi]|max_size[foto_lokasi,1024]|mime_in[foto_lokasi,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'uploaded' => '{field} wajib diunggah.',
+                    'max_size' => 'Ukuran maksimal 1MB.',
+                    'mime_in' => 'Format harus JPG, JPEG, atau PNG.'
+                ]
+            ],
+            'jumlah_lapangan'   => [
+                'label' => '',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Wajib diisi'
+                ]
+            ],
+            'jam_mulai'         => [
+                'label' => '',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Wajib diisi'
+                ]
+            ],
+            'jam_selesai'       => [
+                'label' => '',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Wajib diisi'
+                ]
+            ],
+            'harga_sewa'        => [
+                'label' => '',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Wajib diisi',
+                    'numeric' => '{field} Harus berupa angka'
+                ]
+            ],
+            'harga_sewa_wk' => [
+                'label' => '',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Wajib diisi',
+                    'numeric' => '{field} Harus berupa angka'
+                ]
+            ],
+            'kontak_pemesanan'  => [
+                'label' => '',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Wajib diisi',
+                    'numeric' => '{field} Harus berupa angka'
+                ]
+            ],
+            'metode_pemesanan'  => [
+                'label' => '',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Wajib diisi'
+                ]
+            ],
         ];
 
         if (!$this->validate($rules)) {
             return redirect()->to('Lokasi/inputLokasi')->withInput()->with('errors', $validation->getErrors());
         }
 
-        // Ambil semua file yang diupload
-        $files = $this->request->getFileMultiple('foto_lokasi');
+        // Validasi foto lokasi secara manual
+        $file = $this->request->getFile('foto_lokasi');
         $fotoNames = [];
-        if (!$files || !is_array($files)) {
-            return redirect()->to('Lokasi/inputLokasi')->withInput()->with('errors', ['foto_lokasi' => 'Foto Lokasi harus dipilih.']);
-        }
-        foreach ($files as $file) {
-            if ($file->isValid() && !$file->hasMoved()) {
-                if (!in_array($file->getMimeType(), ['image/jpeg', 'image/jpg', 'image/png'])) {
-                    return redirect()->to('Lokasi/inputLokasi')->withInput()->with('errors', ['foto_lokasi' => 'Format file harus JPG, JPEG, atau PNG']);
-                }
-                if ($file->getSize() > 1024 * 1024) {
-                    return redirect()->to('Lokasi/inputLokasi')->withInput()->with('errors', ['foto_lokasi' => 'Ukuran maksimal tiap gambar 1MB']);
-                }
 
-                $newName = $file->getRandomName();
-                $file->move('foto', $newName);
-                $fotoNames[] = $newName;
-            }
+        if ($file->getError() === 4) {
+            return redirect()->to('Lokasi/inputLokasi')->withInput()->with('errors', [
+                'foto_lokasi' => 'Foto lokasi wajib diunggah.'
+            ]);
         }
 
-        // Konversi fasilitas
+        if (!in_array($file->getMimeType(), ['image/jpeg', 'image/jpg', 'image/png'])) {
+            return redirect()->to('Lokasi/inputLokasi')->withInput()->with('errors', [
+                'foto_lokasi' => 'Format harus JPG, JPEG, atau PNG.'
+            ]);
+        }
+
+        if ($file->getSize() > 1024 * 1024) {
+            return redirect()->to('Lokasi/inputLokasi')->withInput()->with('errors', [
+                'foto_lokasi' => 'Ukuran maksimal 1MB.'
+            ]);
+        }
+
+        $fotoName = $file->getRandomName();
+        $file->move('foto', $fotoName);
+
+        // Konversi checkbox
         $kantin = $this->request->getPost('kantin') ? 1 : 0;
         $toilet = $this->request->getPost('toilet') ? 1 : 0;
         $parkir = $this->request->getPost('parkir') ? 1 : 0;
 
+        // Simpan ke database
         $data = [
             'nama_lokasi'        => $this->request->getPost('nama_lokasi'),
             'alamat_lokasi'      => $this->request->getPost('alamat_lokasi'),
             'latitude'           => $this->request->getPost('latitude'),
             'longitude'          => $this->request->getPost('longitude'),
-            'foto_lokasi'        => implode(',', $fotoNames), // gabungkan jadi string
+            'foto_lokasi'        => $fotoName, // disimpan sebagai string dipisah koma
             'jumlah_lapangan'    => $this->request->getPost('jumlah_lapangan'),
             'jam_mulai'          => $this->request->getPost('jam_mulai'),
             'jam_selesai'        => $this->request->getPost('jam_selesai'),
-            'harga_sewa'         => $this->request->getPost('harga_sewa'),
-            'harga_sewa_wk'         => $this->request->getPost('harga_sewa_wk'),
+            'harga_sewa'         => str_replace('.', '', $this->request->getPost('harga_sewa')),
+            'harga_sewa_wk'      => str_replace('.', '', $this->request->getPost('harga_sewa_wk')),
             'kontak_pemesanan'   => $this->request->getPost('kontak_pemesanan'),
             'metode_pemesanan'   => $this->request->getPost('metode_pemesanan'),
             'kantin'             => $kantin,
@@ -267,6 +360,13 @@ class Lokasi extends BaseController
             'parkir'            => $parkir,
             'kecamatan'         => $this->request->getPost('kecamatan')
         ];
+
+        $file = $this->request->getFile('foto_lokasi');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            $newName = $file->getRandomName();
+            $file->move('foto', $newName);
+            $data['foto_lokasi'] = $newName;
+        }
 
         $this->ModelLokasi->update($id, $data);
         return redirect()->to(base_url('lokasi'))->with('pesan', 'Data berhasil diperbarui!');

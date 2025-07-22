@@ -47,11 +47,36 @@ class ModelLokasi extends Model
     }
 
     public function getWilayahTercakup()
+{
+    $query = $this->db->table($this->table)
+        ->select('TRIM(LOWER(kecamatan)) AS kecamatan')
+        ->where('kecamatan !=', '')
+        ->groupBy('TRIM(LOWER(kecamatan))')
+        ->get();
+
+    return $query->getNumRows();
+}
+
+    public function getFilteredQuery($keyword = null, $kecamatan = null, $max_harga = null)
     {
-        return $this->db->table($this->table)
-            ->select('kecamatan')
-            ->groupBy('kecamatan')
-            ->get()
-            ->getNumRows();
+        $builder = $this->builder();
+
+        if (!empty($keyword)) {
+            $builder->groupStart()
+                ->like('LOWER(nama_lokasi)', strtolower($keyword))
+                ->orLike('LOWER(alamat_lokasi)', strtolower($keyword))
+                ->orLike('LOWER(kecamatan)', strtolower($keyword))
+                ->groupEnd();
+        }
+
+        if (!empty($kecamatan)) {
+            $builder->where('kecamatan', $kecamatan);
+        }
+
+        if (!empty($max_harga)) {
+            $builder->where('harga_sewa <=', $max_harga);
+        }
+
+        return $builder;
     }
 }
