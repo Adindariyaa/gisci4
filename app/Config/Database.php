@@ -24,7 +24,7 @@ class Database extends Config
         $this->default = [
             'DSN'          => env('database.default.DSN', ''),
             'hostname'     => 'mysql.railway.internal',
-            'username'     => 'railway',
+            'username'     => 'root',
             'password'     => 'GxDGYxDfGwLRmfOGTkGWhgHtStGLWaFL',
             'database'     => 'railway',
             'DBDriver'     => 'MySQLi',
