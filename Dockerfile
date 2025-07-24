@@ -28,4 +28,6 @@ RUN echo "<VirtualHost *:80>\n  DocumentRoot /var/www/html/public\n  <Directory 
     && a2enmod rewrite
 
 # 7. Set the correct file permissions for CodeIgniter's writable directory
-RUN chown -R www-data:www-data /var/www/html/writable
+RUN chown -R www-data:www-data /var/www/html/writable \
+    && mkdir -p /var/www/html/public/foto \
+    && chown -R www-data:www-data /var/www/html/public/foto
